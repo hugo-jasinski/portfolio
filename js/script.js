@@ -91,8 +91,6 @@ function bootstrap() {
 
 function initThemeToggle() {
     const toggle = document.getElementById("themeToggle");
-    const icon = document.getElementById("themeIcon");
-    const logo = document.getElementById("logo");
 
     if (!toggle || toggle.dataset.bound) return;
     toggle.dataset.bound = "true";
@@ -109,33 +107,8 @@ function initThemeToggle() {
         document.documentElement.style.colorScheme = isDark ? "dark" : "light only";
     }
 
-    if (icon) {
-        icon.src = isDark
-            ? "assets/icons/dark.png"
-            : "assets/icons/light.png";
-    }
-
-    if (logo) {
-        logo.src = isDark
-            ? "assets/logo-light.png"
-            : "assets/logo-dark.png";
-    }
-
-    // CLICK
     toggle.addEventListener("click", () => {
         const isDark = document.body.classList.toggle("dark");
-
-        if (icon) {
-            icon.src = isDark
-                ? "assets/icons/dark.png"
-                : "assets/icons/light.png";
-        }
-
-        if (logo) {
-            logo.src = isDark
-                ? "assets/logo-light.png"
-                : "assets/logo-dark.png";
-        }
 
         localStorage.setItem("theme", isDark ? "dark" : "light");
 
