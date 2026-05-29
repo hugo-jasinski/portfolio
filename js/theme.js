@@ -1,17 +1,33 @@
 // =====================
 // THEME — résolution & application
-// Mode par défaut : clair. Sombre uniquement si localStorage.theme === "dark".
-// Les fonctions peuvent déjà exister (script inline dans <head>).
+// Préférence explicite (localStorage) > préférence système > clair
 // =====================
 
 (function () {
     "use strict";
 
+    function systemPrefersDark() {
+        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    }
+
     function resolveDarkMode() {
         try {
-            return localStorage.getItem("theme") === "dark";
+            const stored = localStorage.getItem("theme");
+            if (stored === "dark") return true;
+            if (stored === "light") return false;
+            return systemPrefersDark();
         } catch (e) {
             return false;
+        }
+    }
+
+    function persistInitialTheme() {
+        try {
+            if (localStorage.getItem("theme") === null && resolveDarkMode()) {
+                localStorage.setItem("theme", "dark");
+            }
+        } catch (e) {
+            /* localStorage indisponible */
         }
     }
 
@@ -30,6 +46,8 @@
     window.resolveDarkMode = resolveDarkMode;
     window.applyThemeClass = applyThemeClass;
     window.syncColorScheme = syncColorScheme;
+    window.persistInitialTheme = persistInitialTheme;
 
+    persistInitialTheme();
     applyThemeClass();
 })();
