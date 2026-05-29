@@ -95,16 +95,8 @@ function initThemeToggle() {
     if (!toggle || toggle.dataset.bound) return;
     toggle.dataset.bound = "true";
 
-    const isDark = typeof resolveDarkMode === "function"
-        ? resolveDarkMode()
-        : false;
-
-    document.body.classList.toggle("dark", isDark);
-
-    if (typeof syncColorScheme === "function") {
-        syncColorScheme();
-    } else {
-        document.documentElement.style.colorScheme = isDark ? "dark" : "light only";
+    if (typeof applyThemeClass === "function") {
+        applyThemeClass();
     }
 
     toggle.addEventListener("click", () => {
