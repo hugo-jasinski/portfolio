@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/logo-light.png">
+    <link rel="shortcut icon" type="image/png" href="assets/logo-light.png">
+
+    <!-- Apple (iPhone / Safari) -->
+    <link rel="apple-touch-icon" href="assets/logo-light.png">
+
+    <title>Contact - Hugo Jasinski</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <script src="js/intro.js"></script>
+
+    <div id="header"></div> <!-- Appel du header -->
+
+    <main class="container">
+        <div class="page-header" style="margin-bottom: 40px; margin-top: 60px;">
+            <h1 style="margin: 0; margin-bottom: 10px;">Me contacter</h1>
+            <p style="margin: 0; font-size: 1.1rem; opacity: 0.8;">N'hésitez pas à me contacter pour toute demande ou
+                collaboration.</p>
+        </div>
+
+        <div class="contact-grid">
+            <!-- COORDONNÉES MOBILE FIRST -> EN HAUT SUR MOBILE -->
+            <div class="info-section">
+                <div class="about-card">
+                    <div class="skills-grid" style="grid-template-columns: 1fr; margin-top: 0;">
+                        <div class="skill-item">
+                            <div class="skill-title">
+                                <img src="assets/icons/emailB.png" class="icon-light" alt="Email">
+                                <img src="assets/icons/emailW.png" class="icon-dark" alt="Email">
+                                <h3>Email</h3>
+                            </div>
+                            <strong><a href="mailto:jasinshugo@student.hepl.be"
+                                    style="text-decoration: none; color: inherit; font-size: 0.95rem;">jasinshugo@student.hepl.be</a></strong>
+                        </div>
+
+                        <a href="https://www.linkedin.com/in/hugo-jasinski-07a41638a/" target="_blank"
+                            rel="noopener noreferrer" style="text-decoration: none; color: inherit; display: block;">
+                            <div class="skill-item">
+                                <div class="skill-title">
+                                    <img src="assets/icons/LinkedInB.png" class="icon-light" alt="LinkedIn">
+                                    <img src="assets/icons/LinkedInW.png" class="icon-dark" alt="LinkedIn">
+                                    <h3>LinkedIn</h3>
+                                </div>
+                                <p style="word-break: break-all; font-weight: 600; margin: 0; font-size: 0.95rem;">Hugo
+                                    Jasinski</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FORMULAIRE -->
+            <div class="form-section">
+                <div class="about-card" id="form-card"
+                    style="transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease;">
+                    <form id="contact-form" novalidate>
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Nom / Prénom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Email (obligatoire)" required>
+                        </div>
+                        <div class="form-group">
+                            <select id="subject" name="subject" required>
+                                <option value="" disabled selected>Objet</option>
+                                <option value="Collaboration">Collaboration</option>
+                                <option value="Autre question">Autre question</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Votre message" rows="6"
+                                required></textarea>
+                        </div>
+                        <p style="text-align: center; font-size: 0.85rem; opacity: 0.6; margin: 0 0 15px 0;">Je vous
+                            répondrai dans les 48h ouvrables.</p>
+                        <button type="submit" id="submit-btn" class="btn-submit">
+                            <span id="btn-text">Envoyer le message</span>
+                        </button>
+                        <div id="form-message" class="form-message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("contact-form");
+            const formCard = document.getElementById("form-card");
+            const formMessage = document.getElementById("form-message");
+            const submitBtn = document.getElementById("submit-btn");
+            const btnText = document.getElementById("btn-text");
+
+            if (form) {
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+
+                    // Reset styles
+                    formCard.classList.remove("success-state", "error-state");
+                    formMessage.style.display = "none";
+                    formMessage.className = "form-message";
+
+                    const name = document.getElementById("name").value.trim();
+                    const email = document.getElementById("email").value.trim();
+                    const subject = document.getElementById("subject").value;
+                    const message = document.getElementById("message").value.trim();
+
+                    // Validation
+                    if (!name || !email || !subject || !message) {
+                        showError("Champs incomplets");
+                        return;
+                    }
+
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        showError("Merci d’entrer une adresse email valide");
+                        return;
+                    }
+
+                    // Loading state
+                    const originalText = btnText.innerText;
+                    btnText.innerText = "Envoi en cours...";
+                    submitBtn.disabled = true;
+                    submitBtn.style.opacity = "0.7";
+                    submitBtn.style.cursor = "not-allowed";
+
+                    try {
+                        const response = await fetch("https://formspree.io/f/mrerydgy", {
+                            method: "POST",
+                            headers: {
+                                "Accept": "application/json",
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({ name, email, subject, message })
+                        });
+
+                        if (response.ok) {
+                            // Success
+                            formCard.classList.add("success-state");
+                            formMessage.innerText = "Votre message a bien été envoyé !";
+                            formMessage.classList.add("success-text");
+                            formMessage.style.display = "block";
+                            form.reset();
+                        } else {
+                            // Error from API
+                            showError("Erreur lors de l’envoi, réessayez");
+                        }
+                    } catch (error) {
+                        // Network error
+                        showError("Erreur lors de l’envoi, réessayez");
+                    } finally {
+                        btnText.innerText = originalText;
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = "1";
+                        submitBtn.style.cursor = "pointer";
+                    }
+                });
+            }
+
+            function showError(msg) {
+                formCard.classList.add("error-state");
+                formMessage.innerText = msg;
+                formMessage.classList.add("error-text");
+                formMessage.style.display = "block";
+            }
+        });
+    </script>
+</body>
+
+</html>

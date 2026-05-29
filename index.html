@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/logo-light.png">
+    <link rel="shortcut icon" type="image/png" href="assets/logo-light.png">
+
+    <!-- Apple (iPhone / Safari) -->
+    <link rel="apple-touch-icon" href="assets/logo-light.png">
+
+    <title>Hugo Jasinski</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <script src="js/intro.js"></script>
+
+    <div id="header"></div> <!-- Appel du header -->
+
+    <!-- Contenu de la page -->
+
+    <main class="container home-main">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        <span class="hero-title-line">Hugo</span>
+                        <span class="hero-title-line">Jasinski</span>
+                    </h1>
+                    <p class="hero-lede">Actuellement étudiant en Écriture Multimédia à la HEPL, je cherche à me spécialiser dans le montage vidéo tout en restant polyvalent dans la création visuelle.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ACCORDEON -->
+        <div class="about-card expandable open" id="aboutCard">
+            <div class="accordion-header">
+                <div class="accordion-header-top">
+                    <h2>Mes compétences</h2>
+                    <button type="button" class="accordion-toggle" aria-label="Ouvrir ou fermer la section"></button>
+                </div>
+                <p class="accordion-subtitle home-skills-intro">Découvrez ici mes compétences</p>
+            </div>
+
+            <div class="cta-hidden">
+                <div class="skills-grid">
+
+                    <div class="skill-item">
+                        <div class="skill-title">
+                            <img src="assets/icons/videoB.png" class="icon-light" alt="Montage vidéo">
+                            <img src="assets/icons/videoW.png" class="icon-dark" alt="Montage vidéo">
+                            <h3>Montage vidéo</h3>
+                        </div>
+                        <p>Adobe Premiere Pro, DaVinci Resolve</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-title">
+                            <img src="assets/icons/designB.png" class="icon-light" alt="Design visuel">
+                            <img src="assets/icons/designW.png" class="icon-dark" alt="Design visuel">
+                            <h3>Design visuel</h3>
+                        </div>
+                        <p>Adobe Illustrator, Adobe Photoshop, Canva</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-title">
+                            <img src="assets/icons/codeB.png" class="icon-light" alt="Web">
+                            <img src="assets/icons/codeW.png" class="icon-dark" alt="Web">
+                            <h3>Développement Web</h3>
+                        </div>
+                        <p>HTML, CSS, JavaScript, PHP, SQL (bases)</p>
+                    </div>
+
+                    <div class="skill-item">
+                        <div class="skill-title">
+                            <img src="assets/icons/UX-B.png" class="icon-light" alt="Wireframing">
+                            <img src="assets/icons/UX-W.png" class="icon-dark" alt="Wireframing">
+                            <h3>Wireframing</h3>
+                        </div>
+                        <p>Figma</p>
+                    </div>
+
+                </div>
+                <a href="about.html" class="about-cta-btn">
+                    <span>Découvrez mon profil complet</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- PROJECTS PREVIEW -->
+        <div class="section-header">
+            <h2>Mes créations</h2>
+            <a href="projects.html" class="btn-link">Voir plus</a>
+        </div>
+
+        <div class="home-projects-preview" id="homeProjectsPreview" aria-live="polite">
+            <!-- contenu injecté par js/script.js à partir de projects-data.js -->
+        </div>
+
+        <!-- CONTACT CTA -->
+        <section class="cta full-width">
+            <div class="cta-card contact-card" onclick="location.href='contact.html'" role="link" tabindex="0"
+                onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();location.href='contact.html';}">
+                <div class="contact-card-inner">
+                    <div class="contact-card-text">
+                        <h2>Contact</h2>
+                        <p>Construisons quelque chose ensemble</p>
+                    </div>
+                    <span class="contact-card-arrow" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="m13 6 6 6-6 6" />
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="project-modal" class="project-modal">
+        <div class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-body-scroll">
+                    <div class="modal-body"></div>
+                </div>
+                <button type="button" class="modal-close" aria-label="Fermer">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/projects-data.js"></script>
+    <script src="js/projects.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

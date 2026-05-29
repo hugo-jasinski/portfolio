@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="assets/logo-light.png">
+    <link rel="shortcut icon" type="image/png" href="assets/logo-light.png">
+
+    <!-- Apple (iPhone / Safari) -->
+    <link rel="apple-touch-icon" href="assets/logo-light.png">
+
+    <title>Projets - Hugo Jasinski</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <script src="js/intro.js"></script>
+
+    <div id="header"></div> <!-- Appel du header -->
+
+    <!-- Contenu de la page -->
+
+    <main class="container projects-page-content">
+
+        <!-- HERO -->
+        <div class="page-header" style="margin-bottom: 40px; margin-top: 60px;">
+            <h1 style="margin: 0; margin-bottom: 10px;">Mes projets</h1>
+            <p style="margin: 0; font-size: 1.1rem; opacity: 0.8;">Bienvenue au cœur de mon portfolio ! Vous
+                retrouverez ici l'ensemble de mes créations.</p>
+        </div>
+
+        <!-- ===================== -->
+        <!-- ACCORDÉON : MONTAGE VIDÉO -->
+        <!-- ===================== -->
+        <div class="about-card expandable open projects-accordion" id="accordionMontage">
+            <div class="accordion-header">
+                <div class="accordion-header-top">
+                    <div class="skill-title">
+                        <img src="assets/icons/videoB.png" class="icon-light" alt="Montage vidéo">
+                        <img src="assets/icons/videoW.png" class="icon-dark" alt="Montage vidéo">
+                        <h2 style="margin: 0;">Montage vidéo</h2>
+                    </div>
+                </div>
+                <p class="accordion-subtitle">Voici quelques vidéos dont j’ai réalisé le montage. Certaines ont été produites dans le cadre de projets scolaires, d’autres lors de stages en milieu professionnel.</p>
+            </div>
+            <div class="cta-hidden">
+                <div id="montage-content">
+                    <!-- Contenu injecté par JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== -->
+        <!-- ACCORDÉON : DESIGN VISUEL -->
+        <!-- ===================== -->
+        <div class="about-card expandable open projects-accordion" id="accordionDesign">
+            <div class="accordion-header">
+                <div class="accordion-header-top">
+                    <div class="skill-title">
+                        <img src="assets/icons/designB.png" class="icon-light" alt="Design visuel">
+                        <img src="assets/icons/designW.png" class="icon-dark" alt="Design visuel">
+                        <h2 style="margin: 0;">Design visuel</h2>
+                    </div>
+                </div>
+                <p class="accordion-subtitle">Une sélection de créations graphiques mêlant visuels publicitaires, miniatures YouTube et projets réalisés dans un cadre scolaire.</p>
+            </div>
+            <div class="cta-hidden">
+                <div id="design-content">
+                    <!-- Contenu injecté par JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== -->
+        <!-- ACCORDÉON : DÉVELOPPEMENT WEB -->
+        <!-- ===================== -->
+        <div class="about-card expandable open projects-accordion" id="accordionDev">
+            <div class="accordion-header">
+                <div class="accordion-header-top">
+                    <div class="skill-title">
+                        <img src="assets/icons/codeB.png" class="icon-light" alt="Développement web">
+                        <img src="assets/icons/codeW.png" class="icon-dark" alt="Développement web">
+                        <h2 style="margin: 0;">Développement web</h2>
+                    </div>
+                </div>
+                <p class="accordion-subtitle">Des projets web où design et code se rencontrent pour créer des interfaces claires. Chaque réalisation met l’accent sur la structure, l’expérience utilisateur et la cohérence visuelle.</p>
+            </div>
+            <div class="cta-hidden">
+                <div id="dev-content">
+                    <!-- Contenu injecté par JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================== -->
+        <!-- ACCORDÉON : WIREFRAMING -->
+        <!-- ===================== -->
+        <div class="about-card expandable open projects-accordion" id="accordionWireframe">
+            <div class="accordion-header">
+                <div class="accordion-header-top">
+                    <div class="skill-title">
+                        <img src="assets/icons/UX-B.png" class="icon-light" alt="Wireframing">
+                        <img src="assets/icons/UX-W.png" class="icon-dark" alt="Wireframing">
+                        <h2 style="margin: 0;">Wireframing</h2>
+                    </div>
+                </div>
+                <p class="accordion-subtitle">Prototypage et conception UX/UI sur Figma</p>
+            </div>
+            <div class="cta-hidden">
+                <div id="wireframe-content">
+                    <!-- Contenu injecté par JS -->
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ===================== -->
+    <!-- MODAL / OVERLAY -->
+    <!-- ===================== -->
+    <div id="project-modal" class="project-modal">
+        <div class="modal-overlay">
+            <div class="modal-content">
+                <div class="modal-body-scroll">
+                    <div class="modal-body">
+                        <!-- Contenu injecté par JS -->
+                    </div>
+                </div>
+                <button type="button" class="modal-close" aria-label="Fermer">✕</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/projects-data.js"></script>
+    <script src="js/projects.js"></script>
+</body>
+
+</html>
