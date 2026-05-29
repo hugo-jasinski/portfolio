@@ -107,9 +107,7 @@
 
             setTimeout(() => {
                 overlay.remove();
-                clearIntroShell();
-                markIntroSeen();
-                window.dispatchEvent(new CustomEvent("introcomplete"));
+                finishIntro();
             }, ANIM_FADEOUT_DURATION);
         }, totalTime);
     }
@@ -118,9 +116,17 @@
         window.dispatchEvent(new CustomEvent("introcomplete"));
     }
 
+    function finishIntro() {
+        clearIntroShell();
+        applyIntroTheme();
+        markIntroSeen();
+        window.dispatchEvent(new CustomEvent("introcomplete"));
+    }
+
     // --- Init ---
     if (!shouldPlayIntro()) {
         clearIntroShell();
+        applyIntroTheme();
         if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", emitIntroComplete);
         } else {

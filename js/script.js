@@ -97,13 +97,17 @@ function initThemeToggle() {
     if (!toggle || toggle.dataset.bound) return;
     toggle.dataset.bound = "true";
 
-    if (typeof applyThemeClass === "function") {
-        applyThemeClass();
-    }
-
     const isDark = typeof resolveDarkMode === "function"
         ? resolveDarkMode()
-        : document.body.classList.contains("dark");
+        : false;
+
+    document.body.classList.toggle("dark", isDark);
+
+    if (typeof syncColorScheme === "function") {
+        syncColorScheme();
+    } else {
+        document.documentElement.style.colorScheme = isDark ? "dark" : "light only";
+    }
 
     if (icon) {
         icon.src = isDark

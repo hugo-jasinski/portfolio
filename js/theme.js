@@ -1,6 +1,7 @@
 // =====================
-// THEME — résolution & application (avant paint)
+// THEME — résolution & application
 // Mode par défaut : clair. Sombre uniquement si localStorage.theme === "dark".
+// Les fonctions peuvent déjà exister (script inline dans <head>).
 // =====================
 
 (function () {

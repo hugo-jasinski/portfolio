@@ -40,14 +40,14 @@ html.intro-active body > :not(#intro-overlay) {
     visibility: hidden;
 }
 
-html.intro-active.theme-dark-pending body,
-html.intro-active body.dark {
+html.intro-active.theme-dark-pending body {
     background: #0b0f14;
     color: #f5f7ff;
 }
 
-html.intro-active:not(.theme-dark-pending) body:not(.dark) {
+html.intro-active:not(.theme-dark-pending) body {
     background: #ffeede;
+    color: #000;
 }
 
 #intro-overlay {
