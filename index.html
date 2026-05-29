@@ -4,6 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function () {
+            try {
+                var dark = localStorage.getItem("theme") === "dark";
+                document.documentElement.style.colorScheme = dark ? "dark" : "light only";
+                if (localStorage.getItem("introSeenDate") === new Date().toDateString()) return;
+                document.documentElement.classList.add("intro-active");
+                if (dark) document.documentElement.classList.add("theme-dark-pending");
+            } catch (e) {
+                document.documentElement.style.colorScheme = "light only";
+            }
+        })();
+    </script>
+    <style id="intro-critical">
+        html.intro-active body { overflow: hidden; }
+        html.intro-active body > :not(#intro-overlay) { visibility: hidden; }
+        html.intro-active.theme-dark-pending body,
+        html.intro-active body.dark { background: #0b0f14; color: #f5f7ff; }
+        html.intro-active:not(.theme-dark-pending) body:not(.dark) { background: #ffeede; }
+    </style>
 
     <!-- FAVICON -->
     <link rel="icon" type="image/png" href="assets/logo-light.png">
@@ -21,6 +41,15 @@
 
 <body>
 
+    <script>
+        (function () {
+            try {
+                var dark = localStorage.getItem("theme") === "dark";
+                document.body.classList.toggle("dark", dark);
+            } catch (e) { /* localStorage indisponible */ }
+        })();
+    </script>
+    <script src="js/theme.js"></script>
     <script src="js/intro.js"></script>
 
     <div id="header"></div> <!-- Appel du header -->

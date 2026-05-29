@@ -24,14 +24,23 @@
         localStorage.setItem(STORAGE_KEY, new Date().toDateString());
     }
 
-    // --- Dark mode detection ---
     function isDarkMode() {
-        // Check localStorage first (matches the site's theme toggle)
-        const savedTheme = localStorage.getItem("theme");
-        if (savedTheme === "dark") return true;
-        if (savedTheme === "light") return false;
-        // Fallback: system preference
-        return window.matchMedia("(prefers-color-scheme: dark)").matches;
+        return typeof resolveDarkMode === "function"
+            ? resolveDarkMode()
+            : false;
+    }
+
+    function applyIntroTheme() {
+        if (typeof applyThemeClass === "function") {
+            applyThemeClass();
+            return;
+        }
+        document.body.classList.toggle("dark", isDarkMode());
+    }
+
+    function clearIntroShell() {
+        document.documentElement.classList.remove("intro-active", "theme-dark-pending");
+        document.body.style.overflow = "";
     }
 
     // --- Preload logo ---
@@ -44,32 +53,7 @@
         });
     }
 
-    // --- Build & Run ---
-    async function runIntro() {
-        const dark = isDarkMode();
-
-        // Apply dark class to body immediately (before site JS runs)
-        if (dark) {
-            document.body.classList.add("dark");
-        }
-
-        const logoSrc = dark ? "assets/logo-light.png" : "assets/logo-dark.png";
-
-        // Preload logo
-        await preloadImage(logoSrc);
-
-        // Build overlay
-        const overlay = document.createElement("div");
-        overlay.id = "intro-overlay";
-        overlay.className = dark ? "intro-dark" : "";
-
-        // Logo
-        const logoEl = document.createElement("img");
-        logoEl.id = "intro-logo";
-        logoEl.src = logoSrc;
-        logoEl.alt = "Hugo Jasinski";
-
-        // Text container
+    function buildIntroText() {
         const textEl = document.createElement("div");
         textEl.id = "intro-text";
 
@@ -82,31 +66,48 @@
             textEl.appendChild(span);
         });
 
-        overlay.appendChild(logoEl);
-        overlay.appendChild(textEl);
+        return textEl;
+    }
 
-        // Hide site content while intro plays
+    // --- Build & Run ---
+    async function runIntro() {
+        const dark = isDarkMode();
+
+        applyIntroTheme();
         document.body.style.overflow = "hidden";
+
+        // Overlay tout de suite — ne pas attendre le preload (1ère visite en ligne = cache vide)
+        const overlay = document.createElement("div");
+        overlay.id = "intro-overlay";
+        overlay.className = dark ? "intro-dark" : "";
         document.body.insertBefore(overlay, document.body.firstChild);
 
-        // Trigger logo animation on next frame
+        const logoSrc = dark ? "assets/logo-light.png" : "assets/logo-dark.png";
+        await preloadImage(logoSrc);
+
+        const logoEl = document.createElement("img");
+        logoEl.id = "intro-logo";
+        logoEl.src = logoSrc;
+        logoEl.alt = "Hugo Jasinski";
+
+        overlay.appendChild(logoEl);
+        overlay.appendChild(buildIntroText());
+
         requestAnimationFrame(() => {
             requestAnimationFrame(() => {
                 logoEl.classList.add("intro-logo-animate");
             });
         });
 
-        // Total animation time
-        const totalLetterTime = ANIM_TEXT_DELAY + name.length * ANIM_LETTER_STAGGER + 500;
+        const totalLetterTime = ANIM_TEXT_DELAY + "Hugo Jasinski".length * ANIM_LETTER_STAGGER + 500;
         const totalTime = Math.max(ANIM_LOGO_DURATION, totalLetterTime) + ANIM_FADEOUT_DELAY;
 
-        // Fade out
         setTimeout(() => {
             overlay.classList.add("intro-fadeout");
 
             setTimeout(() => {
                 overlay.remove();
-                document.body.style.overflow = "";
+                clearIntroShell();
                 markIntroSeen();
                 window.dispatchEvent(new CustomEvent("introcomplete"));
             }, ANIM_FADEOUT_DURATION);
@@ -119,7 +120,7 @@
 
     // --- Init ---
     if (!shouldPlayIntro()) {
-        // Already seen today — laisser le reste du site (ex. hero) se synchroniser
+        clearIntroShell();
         if (document.readyState === "loading") {
             document.addEventListener("DOMContentLoaded", emitIntroComplete);
         } else {
@@ -128,11 +129,9 @@
         return;
     }
 
-    // Run as early as possible
     if (document.body) {
         runIntro();
     } else {
-        // Body not yet available, wait for it
         document.addEventListener("DOMContentLoaded", runIntro);
     }
 })();

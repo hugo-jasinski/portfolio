@@ -16,8 +16,39 @@
  */
 
 /* =====================
+   COLOR SCHEME (défaut clair — ignore le mode système)
+===================== */
+
+html {
+    color-scheme: light only;
+}
+
+html:has(body.dark) {
+    color-scheme: dark;
+}
+
+/* =====================
    INTRO LOADER
 ===================== */
+
+/* --- Masquage immédiat pendant l'intro (complète le style inline du <head>) --- */
+html.intro-active body {
+    overflow: hidden;
+}
+
+html.intro-active body > :not(#intro-overlay) {
+    visibility: hidden;
+}
+
+html.intro-active.theme-dark-pending body,
+html.intro-active body.dark {
+    background: #0b0f14;
+    color: #f5f7ff;
+}
+
+html.intro-active:not(.theme-dark-pending) body:not(.dark) {
+    background: #ffeede;
+}
 
 #intro-overlay {
     position: fixed;
