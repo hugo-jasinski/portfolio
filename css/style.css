@@ -569,13 +569,27 @@ body.dark .hero {
     }
 }
 
-/* > 15″ FHD (1920 px) — évite le recadrage excessif sur écrans très larges */
+/* > 15″ FHD (1920 px) — hero en carte centrée (fond page visible sur les côtés) */
 @media (min-width: 1921px) {
     .hero {
-        height: min(78vh, 920px);
-        max-height: 920px;
-        background-size: auto 100%;
-        background-position: right top;
+        --hero-mobile-header-gap: calc(10px + 10px + 40px + 10px);
+
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: var(--hero-mobile-header-gap);
+
+        height: auto;
+        min-height: 0;
+        max-height: none;
+        aspect-ratio: 3000 / 2000;
+
+        border-radius: 20px;
+        overflow: hidden;
+
+        background-size: 100% auto;
+        background-position: 88% top;
     }
 }
 
