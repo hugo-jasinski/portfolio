@@ -12,10 +12,10 @@ window.PROJECTS_DATA = {
         },
         {
             id: "montage-2",
-            title: "Dentistes: Comment introduire sa demande d'accréditation INAMI ?",
-            videoId: "https://www.youtube.com/watch?v=jFatNPNBl2A",
-            orientation: "horizontal",
-            description: "Vidéo tutorielle visant à accompagner les dentistes belges dans leur demande d'accréditation Inami. \nJ'ai monté cette vidéo avec DaVinci Resolve dans le cadre d'un stage au sein de l'ADAB – Association Dantaire Accadémique Belge. J'y ai utilisé des zooms dynamiques et des sons de clics dans le but de simplifier autant que possible la compréhension par l'audience de la procédure expliquée."
+            title: "Mise à jour en radiologie & radioprotection",
+            videoId: "https://youtube.com/shorts/8Acv0cM8cBg?si=zWX86KCnDmJIZj2J",
+            orientation: "vertical",
+            description: "Vidéo verticale faisant la promotion d'un webinaire en dentisterie \nDurant un stage à l'ADAB – Association Dentaire Accadémique Belge, j'ai monté cette vidéo avec Canva en utilisant une vidéo fournie par le docteur Gaëtan Letesson ainsi que des photos et vidéos extraites de la banque d'images de Canva."
         },
         {
             id: "montage-3",
