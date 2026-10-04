@@ -572,13 +572,14 @@ body.dark .hero {
 /* > 15″ FHD (1920 px) — hero en carte centrée (fond page visible sur les côtés) */
 @media (min-width: 1921px) {
     .hero {
-        --hero-mobile-header-gap: calc(10px + 10px + 40px + 10px);
+        /* header: top 10px + padding 10 + contenu 40 + padding 10, puis 10px sous le header (= top) */
+        --hero-wide-header-gap: calc(10px + 10px + 40px + 10px + 10px);
 
         width: 100%;
         max-width: 100%;
         margin-left: 0;
         margin-right: 0;
-        margin-top: var(--hero-mobile-header-gap);
+        margin-top: var(--hero-wide-header-gap);
 
         height: auto;
         min-height: 0;
