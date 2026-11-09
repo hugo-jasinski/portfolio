@@ -9,7 +9,7 @@
         (function () {
             "use strict";
             try {
-                if (localStorage.getItem("introSeenDate") === new Date().toDateString()) {
+                if (sessionStorage.getItem("introSeenDate") === new Date().toDateString()) {
                     return;
                 }
                 document.documentElement.classList.add("intro-active");
@@ -90,26 +90,34 @@
             <div class="form-section">
                 <div class="about-card" id="form-card"
                     style="transition: background 0.3s ease, border 0.3s ease, transform 0.3s ease;">
-                    <form id="contact-form" novalidate>
+                    <form id="contact-form" aria-describedby="contact-privacy" novalidate>
                         <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Nom / Prénom" required>
+                            <input type="text" id="name" name="name" aria-label="Nom / Prénom" autocomplete="name" placeholder="Nom / Prénom" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Email (obligatoire)" required>
+                            <input type="email" id="email" name="email" aria-label="Email" autocomplete="email" placeholder="Email (obligatoire)" required>
                         </div>
                         <div class="form-group">
-                            <select id="subject" name="subject" required>
+                            <select id="subject" name="subject" aria-label="Objet" required>
                                 <option value="" disabled selected>Objet</option>
                                 <option value="Collaboration">Collaboration</option>
                                 <option value="Autre question">Autre question</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Votre message" rows="6"
+                            <textarea id="message" name="message" aria-label="Votre message" placeholder="Votre message" rows="6"
                                 required></textarea>
                         </div>
                         <p style="text-align: center; font-size: 0.85rem; opacity: 0.6; margin: 0 0 15px 0;">Je vous
                             répondrai dans les 48h ouvrables.</p>
+                        <p id="contact-privacy" class="contact-privacy">
+                            Tous les champs sont obligatoires. Hugo Jasinski utilise vos données uniquement
+                            pour répondre à votre demande. Elles transitent par Formspree (États-Unis), puis sa
+                            messagerie, et sont supprimées une fois la demande résolue et le suivi terminé.
+                            Pour exercer vos droits, dont l’accès,
+                            l’opposition et l’effacement : <a href="mailto:jasinshugo@hotmail.com">jasinshugo@hotmail.com</a>.
+                            <a href="confidentialite.html#contact">Politique de confidentialité</a>.
+                        </p>
                         <button type="submit" id="submit-btn" class="btn-submit">
                             <span id="btn-text">Envoyer le message</span>
                         </button>

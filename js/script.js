@@ -102,7 +102,11 @@ function initThemeToggle() {
     toggle.addEventListener("click", () => {
         const isDark = document.body.classList.toggle("dark");
 
-        localStorage.setItem("theme", isDark ? "dark" : "light");
+        try {
+            sessionStorage.setItem("theme", isDark ? "dark" : "light");
+        } catch (e) {
+            /* Keep the selected theme usable without browser storage. */
+        }
 
         if (typeof syncColorScheme === "function") {
             syncColorScheme();
@@ -212,34 +216,11 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-function extractYoutubeThumbId(value) {
-    if (!value || typeof value !== "string") return "";
-    const raw = value.trim();
-    if (!raw.includes("http")) return raw;
-    try {
-        const url = new URL(raw);
-        const host = url.hostname.replace(/^www\./, "").toLowerCase();
-        if (host === "youtube.com" || host === "youtu.be") {
-            const shortsMatch = url.pathname.match(/\/shorts\/([^/?]+)/);
-            if (shortsMatch && shortsMatch[1]) return shortsMatch[1];
-            const watchId = url.searchParams.get("v");
-            if (watchId) return watchId;
-            const pathId = url.pathname.replace(/^\/+/, "").split("/")[0];
-            if (pathId && pathId !== "watch") return pathId;
-        }
-    } catch (e) {
-        /* ignore */
-    }
-    return "";
-}
-
 function homeProjectThumbnail(category, project) {
     if (category === "montage" && project.homeThumbnail) {
         return project.homeThumbnail;
     }
     if (category === "montage" && project.videoId) {
-        const id = extractYoutubeThumbId(project.videoId);
-        if (id) return `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
         return "assets/texture.png";
     }
     if (category === "design") return project.image || "assets/texture.png";

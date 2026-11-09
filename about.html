@@ -9,7 +9,7 @@
         (function () {
             "use strict";
             try {
-                if (localStorage.getItem("introSeenDate") === new Date().toDateString()) {
+                if (sessionStorage.getItem("introSeenDate") === new Date().toDateString()) {
                     return;
                 }
                 document.documentElement.classList.add("intro-active");
@@ -205,7 +205,7 @@
                     <a href="https://www.hepl.be/fr/ecriture-multimedia" target="_blank" rel="noopener noreferrer"
                         class="timeline-content highlight-border">
                         <h3>Bachelier en Écriture Multimédia</h3>
-                        <p>Haute Ecole de la Province de Liège - Actuellement en 2ème année</p>
+                        <p>Haute Ecole de la Province de Liège - Actuellement en 3e année</p>
                     </a>
                 </div>
 

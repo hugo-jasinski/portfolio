@@ -9,7 +9,7 @@
         (function () {
             "use strict";
             try {
-                if (localStorage.getItem("introSeenDate") === new Date().toDateString()) {
+                if (sessionStorage.getItem("introSeenDate") === new Date().toDateString()) {
                     return;
                 }
                 document.documentElement.classList.add("intro-active");

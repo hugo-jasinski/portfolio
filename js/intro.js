@@ -16,12 +16,19 @@
     // --- Should we play? ---
     function shouldPlayIntro() {
         const today = new Date().toDateString();
-        const stored = localStorage.getItem(STORAGE_KEY);
-        return stored !== today;
+        try {
+            return sessionStorage.getItem(STORAGE_KEY) !== today;
+        } catch (e) {
+            return true;
+        }
     }
 
     function markIntroSeen() {
-        localStorage.setItem(STORAGE_KEY, new Date().toDateString());
+        try {
+            sessionStorage.setItem(STORAGE_KEY, new Date().toDateString());
+        } catch (e) {
+            /* The animation also works when browser storage is unavailable. */
+        }
     }
 
     function isDarkMode() {

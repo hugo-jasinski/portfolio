@@ -9,7 +9,7 @@
         (function () {
             "use strict";
             try {
-                if (localStorage.getItem("introSeenDate") === new Date().toDateString()) {
+                if (sessionStorage.getItem("introSeenDate") === new Date().toDateString()) {
                     return;
                 }
                 document.documentElement.classList.add("intro-active");
@@ -36,9 +36,6 @@
     <link rel="apple-touch-icon" href="assets/logo-light.png">
 
     <title>Hugo Jasinski</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
 </head>
 

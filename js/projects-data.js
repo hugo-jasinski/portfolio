@@ -7,6 +7,7 @@ window.PROJECTS_DATA = {
             id: "montage-1",
             title: "Découverte de la section : Interview d'étudiants en écriture multimédia",
             videoId: "https://youtu.be/OSpMF_gG8Go",
+            homeThumbnail: "assets/projectsImgs/montage/interview.jpg",
             orientation: "horizontal",
             description: "Cette vidéo est l'interview de deux étudiants en écriture multimédia au sujet de leur section. \nJ'ai, pour ce projet, participé au tournage avec 4 autres étudiants et réalisé ce montage individuellement en utilisant le logiciel DaVinci Resolve."
         },
@@ -14,6 +15,7 @@ window.PROJECTS_DATA = {
             id: "montage-2",
             title: "Mise à jour en radiologie & radioprotection",
             videoId: "https://youtube.com/shorts/8Acv0cM8cBg?si=zWX86KCnDmJIZj2J",
+            homeThumbnail: "assets/projectsImgs/montage/radiologie.jpg",
             orientation: "vertical",
             description: "Vidéo verticale faisant la promotion d'un webinaire en dentisterie \nDurant un stage à l'ADAB – Association Dentaire Accadémique Belge, j'ai monté cette vidéo avec Canva en utilisant une vidéo fournie par le docteur Gaëtan Letesson ainsi que des photos et vidéos extraites de la banque d'images de Canva."
         },
@@ -29,6 +31,7 @@ window.PROJECTS_DATA = {
             id: "montage-4",
             title: "Mieux comprendre les générations X, Y, Z et Alpha",
             videoId: "https://www.youtube.com/shorts/8jpf_ltLvGw",
+            homeThumbnail: "assets/projectsImgs/montage/generations.jpg",
             orientation: "vertical",
             description: "Vidéo verticale faisant la promotion d'un webinaire en dentisterie \nDurant un stage à l'ADAB – Association Dentaire Accadémique Belge, j'ai monté cette vidéo avec Canva en utilisant une vidéo fournie par le psychanalyste Alain Heril ainsi que des photos et vidéos extraites de la banque d'images de Canva."
         }

@@ -1,3 +1,11 @@
+@font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("../assets/fonts/InterVariable.woff2") format("woff2");
+}
+
 /*
  * =============================================================================
  * style.css — Portfolio
@@ -123,7 +131,7 @@ html.intro-active:not(.theme-dark-pending) body {
     justify-content: center;
     flex-wrap: wrap;
     gap: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: var(--site-font-family);
     font-size: clamp(24px, 4.5vw, 42px);
     font-weight: 700;
     letter-spacing: 0.02em;
@@ -174,6 +182,7 @@ html.intro-active:not(.theme-dark-pending) body {
 ===================== */
 
 :root {
+    --site-font-family: "Inter", Arial, sans-serif;
     --bg: #fff8ef;
     --text: #000;
     --glass: rgba(255, 255, 255, 0.25);
@@ -190,7 +199,7 @@ html.intro-active:not(.theme-dark-pending) body {
     --skill-height: 72px;
 
     /* Hero (accueil) — typographie & hiérarchie */
-    --hero-title-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --hero-title-family: var(--site-font-family);
     --hero-title-weight: 800;
     --hero-title-tracking: -0.045em;
     --hero-title-line-height: 0.92;
@@ -204,6 +213,18 @@ html.intro-active:not(.theme-dark-pending) body {
     box-sizing: border-box;
 }
 
+button,
+input,
+select,
+textarea,
+option,
+code,
+pre,
+kbd,
+samp {
+    font-family: inherit;
+}
+
 html,
 body {
     width: 100%;
@@ -212,7 +233,8 @@ body {
 
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont;
+    font-family: var(--site-font-family);
+    font-optical-sizing: auto;
 
     background: #fff3df;
     color: var(--text);
@@ -2569,6 +2591,103 @@ body.dark .project-video-card:hover {
     width: 100%;
     height: 100%;
     border: none;
+}
+
+.privacy-page a,
+.contact-privacy a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.privacy-page a:focus-visible,
+.contact-privacy a:focus-visible {
+    outline: 3px solid #4764cc;
+    outline-offset: 3px;
+}
+
+.contact-privacy {
+    font-size: 0.85rem;
+    line-height: 1.65;
+    margin: 0 0 18px;
+    overflow-wrap: anywhere;
+}
+
+.privacy-page {
+    max-width: 1000px;
+    padding-bottom: 96px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+}
+
+.privacy-page .page-header {
+    margin: 60px 0 32px;
+}
+
+.privacy-page h1 {
+    line-height: 1.2;
+}
+
+.privacy-page .about-card {
+    margin-bottom: 24px;
+}
+
+.privacy-page h2 {
+    margin-top: 0;
+    line-height: 1.35;
+    scroll-margin-top: 130px;
+}
+
+.privacy-page p:last-child {
+    margin-bottom: 0;
+}
+
+html.privacy-document {
+    scroll-behavior: smooth;
+}
+
+.back-to-top {
+    position: fixed;
+    right: max(20px, env(safe-area-inset-right));
+    bottom: max(20px, env(safe-area-inset-bottom));
+    z-index: 1100;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
+    background: #fff8ef;
+    color: var(--text);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.18);
+}
+
+.back-to-top:focus-visible {
+    outline: 3px solid #4764cc;
+    outline-offset: 3px;
+}
+
+body.dark .back-to-top {
+    background: #20283a;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html.privacy-document {
+        scroll-behavior: auto;
+    }
+
+    .back-to-top {
+        transition: none;
+    }
 }
 
 /* --- Video placeholder --- */

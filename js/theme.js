@@ -3,7 +3,7 @@
 
     function resolveDarkMode() {
         try {
-            const stored = localStorage.getItem("theme");
+            const stored = sessionStorage.getItem("theme");
             if (stored === "dark") return true;
             if (stored === "light") return false;
             return window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -14,8 +14,8 @@
 
     function persistThemePreference() {
         try {
-            if (localStorage.getItem("theme") === null) {
-                localStorage.setItem("theme", resolveDarkMode() ? "dark" : "light");
+            if (sessionStorage.getItem("theme") === null) {
+                sessionStorage.setItem("theme", resolveDarkMode() ? "dark" : "light");
             }
         } catch (e) {
             /* ignore */
