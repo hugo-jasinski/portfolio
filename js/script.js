@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", initApp);
 
 function initApp() {
     initHeader();
+    loadComponent("footer", "components/footer.html");
     initThemeToggle();
     initBurgerMenu();
     initAccordion();
@@ -46,34 +47,30 @@ function initApp() {
 }
 
 // =====================
-// HEADER (ULTRA SAFE)
+// SHARED COMPONENTS
 // =====================
 
-function initHeader() {
-    const container = document.getElementById("header");
+function loadComponent(containerId, url) {
+    const container = document.getElementById(containerId);
+    if (!container) return Promise.resolve();
 
-    if (!container) {
-        bootstrap();
-        return;
-    }
-
-    fetch("components/header.html")
+    return fetch(url)
         .then(res => {
-            if (!res.ok) throw new Error("header introuvable");
+            if (!res.ok) throw new Error(`Composant introuvable : ${url}`);
             return res.text();
         })
         .then(html => {
             container.innerHTML = html;
-
-            // wait DOM injection stable
-            requestAnimationFrame(() => {
-                bootstrap();
-            });
         })
         .catch(err => {
-            console.error("Header error:", err);
-            bootstrap();
+            console.error("Component error:", url, err);
         });
+}
+
+function initHeader() {
+    loadComponent("header", "components/header.html").then(() => {
+        requestAnimationFrame(bootstrap);
+    });
 }
 
 // =====================

@@ -13,7 +13,7 @@
  * Ordre des règles : NE PAS réordonner les blocs (cascade, surcharges, media queries).
  *
  * Carte des sections (repères « ===================== » dans le fichier) :
- *   INTRO LOADER → DESIGN SYSTEM → LAYOUT → HEADER → NAV DESKTOP → LOGO →
+ *   INTRO LOADER → DESIGN SYSTEM → LAYOUT → HEADER → FOOTER → NAV DESKTOP → LOGO →
  *   THEME BUTTON → HERO → CTA → PROJECTS (aperçu accueil) → BURGER → MOBILE MENU → RESPONSIVE (≤768) →
  *   ANIM → LIGHT MODE EMPHASIS → SKILLS GRID → SKILL BUBBLE → TITLE ROW → DETAILS TEXT →
  *   DARK MODE → PROFILE GRID → LANGUAGES → TIMELINE → CV BUTTON → POP ANIMATION →
@@ -374,6 +374,93 @@ main.home-main.container {
     width: calc(100% - (var(--side-padding) * 2));
 
     transition: background 0.4s ease, transform 0.3s ease;
+}
+
+/* =====================
+   FOOTER
+===================== */
+
+.site-footer {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    max-width: var(--max-width);
+    width: calc(100% - (var(--side-padding) * 2));
+    margin: 0 auto 24px;
+    padding: 24px 28px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    color: var(--text);
+    font-size: 0.875rem;
+    line-height: 1.6;
+}
+
+.site-footer-credit {
+    margin: 0;
+}
+
+.site-footer-signature {
+    display: block;
+    margin-top: 4px;
+    font-size: 0.8rem;
+    opacity: 0.75;
+}
+
+.site-footer nav {
+    display: flex;
+    justify-content: center;
+}
+
+.site-footer a {
+    display: inline-block;
+    padding: 10px 14px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.25);
+    color: inherit;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    text-underline-offset: 4px;
+}
+
+.site-footer a:hover {
+    text-decoration: underline;
+}
+
+.site-footer a:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 4px;
+}
+
+body.dark .site-footer,
+body.dark .site-footer a {
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.dark .site-footer a {
+    background: rgba(30, 35, 50, 0.45);
+}
+
+/* Keep the fixed back-to-top control clear of the footer on the privacy page. */
+.privacy-document .site-footer {
+    margin-bottom: 88px;
+}
+
+@media (max-width: 600px) {
+    .site-footer {
+        width: calc(100% - 30px);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        padding: 22px 18px;
+        text-align: center;
+    }
 }
 
 /* =====================
